@@ -7,7 +7,7 @@ module.exports = gql`
     email: String
     picture: String
   }
-  
+
   type Pin {
     _id: ID
     createdAt: String
@@ -19,7 +19,7 @@ module.exports = gql`
     author: User
     comments: [Comment]
   }
-  
+
   type Comment {
     text: String
     createdAt: String

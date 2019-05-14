@@ -7,10 +7,9 @@ require('dotenv').config();
 
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  .then(() => console.log("DB Connected!"))
+  .then(() => console.log('DB Connected!'))
   .catch(err => console.error(err));
 mongoose.set('debug', true);
-
 
 const server = new ApolloServer({
   typeDefs,
