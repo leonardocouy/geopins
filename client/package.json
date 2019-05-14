@@ -16,7 +16,7 @@
     "mapbox-gl": "^0.52.0",
     "react": "^16.8.0-alpha.1",
     "react-apollo": "^2.4.0",
-    "react-dom": "^16.8.0-alpha.1",
+    "react-dom": "^16.8.6",
     "react-google-login": "^5.0.0",
     "react-map-gl": "^4.0.9",
     "react-router-dom": "^4.3.1",
