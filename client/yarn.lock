@@ -8576,10 +8576,10 @@ react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
-react-google-login@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-google-login/-/react-google-login-5.0.0.tgz#b119338c923ae6ad84cbe9bb6ff6df96584b8ef7"
-  integrity sha512-5x+eQC0uWIqMIvfafzWchfJkn/VX3Nv31WvgVlkbxfJwszD/xNLpq+lAxlaIbVz6EkGQXDm7Qo8vu3MWJwYYnw==
+react-google-login@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/react-google-login/-/react-google-login-5.0.4.tgz#fa96ff374480d1c2b2b279310959754d5957cadb"
+  integrity sha512-XNgm3pNQMaZiHTeZ4Qa5cWfdj/p5ppwgI/adYQrjD6fj6CK6ut76CGlh2xo+4r3XRSIeaWanFjUxU9kmBCGXZQ==
   dependencies:
     "@types/react" "*"
     prop-types "^15.6.0"
