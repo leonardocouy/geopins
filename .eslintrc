@@ -4,13 +4,15 @@
     "plugin:prettier/recommended"
   ],
   "plugins": [
+    "import",
     "prettier"
   ],
   "env": {
-    "es6": true,
+    "node": true,
     "browser": true
   },
   "rules": {
+    "no-undef": "off",
     "no-console": "off",
     "comma-dangle": [2, "always-multiline"],
     "prettier/prettier": "error"
