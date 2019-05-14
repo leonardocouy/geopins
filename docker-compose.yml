@@ -1,0 +1,26 @@
+version: '3'
+services:
+  server:
+    container_name: geopins_server
+    build:
+      context: ./server/
+    command: yarn run dev
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8000:8000"
+      - "4000:4000"
+    env_file: ./server/.env
+  client:
+    container_name: geopins_client
+    build:
+      context: ./client/
+    command: yarn run start
+    volumes:
+      - ./client/:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
