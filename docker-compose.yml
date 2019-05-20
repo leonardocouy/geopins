@@ -7,7 +7,7 @@ services:
     command: yarn run dev
     volumes:
       - ./server/:/usr/src/app
-      - /usr/src/app/node_modules
+      - nodemodules_server:/usr/src/app/node_modules
     ports:
       - "8000:8000"
       - "4000:4000"
@@ -19,8 +19,12 @@ services:
     command: yarn run start
     volumes:
       - ./client/:/usr/src/app
-      - /usr/src/app/node_modules
+      - nodemodules_client:/usr/src/app/node_modules
     depends_on:
       - server
     ports:
       - "3000:3000"
+
+volumes:
+  nodemodules_client:
+  nodemodules_server:
