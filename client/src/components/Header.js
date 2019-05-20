@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import MapIcon from "@material-ui/icons/Map";
 import Typography from "@material-ui/core/Typography";
 
+import Signout from "../components/Auth/Signout";
 import Context from "../context";
 
 const Header = ({ classes }) => {
@@ -19,23 +20,24 @@ const Header = ({ classes }) => {
             <Typography component="h1" variant="h6" color="inherit" noWrap>
               GeoPins
             </Typography>
-            {currentUser && (
-               <div className={classes.grow}>
-                 <img
-                   className={classes.picture}
-                   src={currentUser.picture}
-                   alt={currentUser.name}
-                 />
-                 <Typography
-                   variant="h5"
-                   color="inherit"
-                   noWrap
-                 >
-                   {currentUser.name}
-                 </Typography>
-               </div>
-            )}
           </div>
+          {currentUser && (
+              <div className={classes.grow}>
+                <img
+                  className={classes.picture}
+                  src={currentUser.picture}
+                  alt={currentUser.name}
+                />
+                <Typography
+                  variant="h5"
+                  color="inherit"
+                  noWrap
+                >
+                  {currentUser.name}
+                </Typography>
+              </div>
+          )}
+          <Signout />
         </Toolbar>
       </AppBar>
     </div>
