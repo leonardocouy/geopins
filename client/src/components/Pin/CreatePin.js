@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { GraphQLClient } from "graphql-request";
 import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -10,12 +11,14 @@ import ClearIcon from "@material-ui/icons/Clear";
 import SaveIcon from "@material-ui/icons/SaveTwoTone";
 
 import Context from "../../context";
+import { CREATE_PIN_MUTATION } from "../../graphql/mutations";
 
 const CreatePin = ({ classes }) => {
-  const { dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const [ title, setTitle ] = useState("");
   const [ image, setImage ] = useState("");
   const [ content, setContent ] = useState("");
+  const [ submitting, setSubmitting ] = useState(false);
 
   const handleImageUpload = async() => {
     const data = new FormData();
@@ -31,9 +34,26 @@ const CreatePin = ({ classes }) => {
   }
 
   const handleSubmit = async event => {
-    event.preventDefault();
-    const url = await handleImageUpload();
-    console.log({title, url, image, content })
+    try {
+      event.preventDefault();
+      setSubmitting(true);
+      const idToken = window.gapi.auth2.getAuthInstance().currentUser.get()
+        .getAuthResponse().id_token;
+      const client = new GraphQLClient("http://localhost:4000/graphql", {
+        headers: { authorization: idToken },
+      });
+
+      const url = image ? await handleImageUpload() : null;
+      const { latitude, longitude } = state.draft;
+      const variables = { title, image: url, content, latitude, longitude };
+      const { createPin } = await client.request(CREATE_PIN_MUTATION, variables);
+      console.log("Pin created", { createPin });
+      handleDeleteDraft();
+    } catch(err) {
+      console.log("Error creating pin", err);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const handleDeleteDraft = event => {
@@ -98,7 +118,7 @@ const CreatePin = ({ classes }) => {
         <Button
           type="submit"
           onClick={handleSubmit}
-          disabled={!title.trim() || !content.trim() }
+          disabled={!title.trim() || !content.trim() || submitting }
           className={classes.button}
           variant="contained"
           color="secondary"
