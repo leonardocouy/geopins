@@ -7,12 +7,12 @@ const PinSchema = new mongoose.Schema(
     image: String,
     latitude: Number,
     longitude: Number,
-    author: { type: moongose.Schema.ObjectId, ref: 'User' },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     comments: [
       {
         text: String,
         createdAt: { type: Date, default: Date.now },
-        author: { type: moongose.Schema.ObjectId, ref: 'User' },
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
       },
     ],
   },
